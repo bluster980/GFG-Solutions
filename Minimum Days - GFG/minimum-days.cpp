@@ -30,23 +30,18 @@ public:
 // } Driver Code Ends
 class Solution {
   public:
-    int getMinimumDays(int N,string S, vector<int> &P) {
-        set<int>s;
-        for(int i=0;i<N-1;i++)if(S[i]==S[i+1])
-        s.insert(i);
-        if(s.size()==0)return 0;
-        int ans=0;
-        for(int i=0;i<N;i++){
-            char c=S[P[i]];
-            int idx=P[i];
-            if(idx>0 and S[idx]==S[idx-1])s.erase(idx-1);
-            if(idx!=N-1 and S[idx]==S[idx+1])
-            s.erase(idx);
-            ans++;
-            if(s.empty())return ans;
-            S[idx]='?';
+    int getMinimumDays(int n,string s, vector<int> &v) {
+        int temp = 0;
+        for(int i=1; i<s.size(); i++){
+            if(s[i-1]==s[i]) temp++;
         }
-        return ans;
+        if(!temp) return 0;
+        for(int i=0; i<v.size(); i++){
+            if(v[i]>0 && s[v[i]]==s[v[i]-1]) temp--;
+            if(v[i]<n-1 && s[v[i]+1]==s[v[i]]) temp--;
+            if(temp <= 0) return i+1;
+            s[v[i]]='$';
+        }
     }
 };
 
