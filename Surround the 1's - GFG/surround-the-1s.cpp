@@ -8,32 +8,32 @@ using namespace std;
 class Solution {
 public:
     int Count(vector<vector<int> >& nums) {
-    int count = 0;
-    int numRows = nums.size();
-    int numCols = nums[0].size();
-    for (int i = 0; i < numRows; i++) {
-        for (int j = 0; j < numCols; j++) {
-            if (nums[i][j] == 1) {
-                int temp = 0;
-                for (int x = -1; x <= 1; x++) {
-                    for (int y = -1; y <= 1; y++) {
-                        int newRow = i + x;
-                        int newCol = j + y;
-                        if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
-                            if (nums[newRow][newCol] == 0) {
-                                temp++;
+        int count = 0;
+        int numRows = nums.size();
+        int numCols = nums[0].size();
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                if (nums[i][j] == 1) {
+                    int temp = 0;
+                    for (int x = -1; x <= 1; x++) {
+                        for (int y = -1; y <= 1; y++) {
+                            int newRow = i + x;
+                            int newCol = j + y;
+                            if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
+                                if (nums[newRow][newCol] == 0) {
+                                    temp++;
+                                }
                             }
                         }
                     }
-                }
-                if (temp > 0 && temp % 2 == 0){
-                    count++;
+                    if (temp > 0 && temp % 2 == 0){
+                        count++;
+                    }
                 }
             }
         }
+        return count;
     }
-    return count;
-}
 };
 
 //{ Driver Code Starts.
