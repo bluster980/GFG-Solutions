@@ -9,22 +9,16 @@ class Solution {
 public:
     int Count(vector<vector<int> >& nums) {
     int count = 0;
-    int numRows = nums.size(); // Store the number of rows
-    int numCols = nums[0].size(); // Store the number of columns
-
-    // Loop through each element in the matrix
+    int numRows = nums.size();
+    int numCols = nums[0].size();
     for (int i = 0; i < numRows; i++) {
         for (int j = 0; j < numCols; j++) {
             if (nums[i][j] == 1) {
                 int temp = 0;
-
-                // Check surrounding cells
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 1; y++) {
                         int newRow = i + x;
                         int newCol = j + y;
-
-                        // Make sure the new row and column indices are within bounds
                         if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
                             if (nums[newRow][newCol] == 0) {
                                 temp++;
@@ -32,9 +26,7 @@ public:
                         }
                     }
                 }
-
-                // Exclude the center cell itself when counting surrounding zeros
-                if (temp > 0 && temp % 2 == 0) { // Check for an even number of surrounding zeros
+                if (temp > 0 && temp % 2 == 0){
                     count++;
                 }
             }
@@ -42,7 +34,6 @@ public:
     }
     return count;
 }
-
 };
 
 //{ Driver Code Starts.
