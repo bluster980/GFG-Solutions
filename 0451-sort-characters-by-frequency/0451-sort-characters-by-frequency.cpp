@@ -1,7 +1,7 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        map<char,int> mp,mp2;
+        unordered_map<char,int> mp,mp2;
         for(int i=0; i<s.size(); i++){
             mp[s[i]]++;
         }
